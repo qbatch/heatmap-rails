@@ -1,6 +1,7 @@
 module HeatmapRb
   class PointsController < ApplicationController
     def create
+      puts "HI"
       if params[:data].present?
         for i in 0..2
           HeatMap.create(path: params[:data]["#{i}"][:path], x_coordinate: params[:data]["#{i}"][:x], y_coordinate: params[:data]["#{i}"][:y], value: 5, click_type: 'click')
