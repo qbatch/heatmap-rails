@@ -1,2 +1,2 @@
-class HeatMap < ApplicationRecord
+class HeatMap < ActiveRecord::Base
 end
