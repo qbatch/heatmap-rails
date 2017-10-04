@@ -1,0 +1,2 @@
+class HeatMap < ApplicationRecord
+end
