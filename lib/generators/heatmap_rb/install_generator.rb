@@ -12,7 +12,7 @@ module HeatmapRb
     end
 
     def create_model_file
-      migration_template "initializer.rb", "db/migrate/add_foo_to_bar.rb"
+      migration_template "initializer.rb", "db/migrate/create_heat_maps.rb"
     end
   end
 end
