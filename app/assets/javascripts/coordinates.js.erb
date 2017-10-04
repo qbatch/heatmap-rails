@@ -1,40 +1,41 @@
 $( document ).ready(function() {
-  var move_array = [];
-  document.querySelector('.heat_map_body').onmousemove = function(ev) {
-    var pageCoords = {x: ev.layerX/$(".heat_map_body").width(), y: ev.layerY/$(".heat_map_body").height()};
-    move_array.push(pageCoords);
-    if (move_array.length >= 50)
-    {
-      var sum = move_array.reduce(function (a, b) {
-      return {x: a.x + b.x, y: a.y + b.y};
-      });
-      var coordinates = { path: window.location.pathname, x: sum['x']/move_array.length, y: sum['y']/move_array.length, type: 'move' };
-      move_array=[];
+  // var move_array = [];
+  // document.querySelector('.heat_map_body').onmousemove = function(ev) {
+  //   var pageCoords = {x: ev.layerX/$(".heat_map_body").width(), y: ev.layerY/$(".heat_map_body").height()};
+  //   move_array.push(pageCoords);
+  //   if (move_array.length >= 50)
+  //   {
+  //     var sum = move_array.reduce(function (a, b) {
+  //     return {x: a.x + b.x, y: a.y + b.y};
+  //     });
+  //     var coordinates = { path: window.location.pathname, x: sum['x']/move_array.length, y: sum['y']/move_array.length, type: 'move' };
+  //     move_array=[];
 
-      $.ajax({
-         method: "POST",
-         url: '<%= points_path %>',
-         data: coordinates,
-         dataType: 'application/json'
-      });
-    }
-  };
+  //     $.ajax({
+  //        method: "POST",
+  //        url: '<%= points_path %>',
+  //        data: coordinates,
+  //        dataType: 'application/json'
+  //     });
+  //   }
+  // };
 
-  var click_array = [];
-  document.querySelector('.heat_map_body').onclick = function(ev) {
-    var pageCoords = { path: window.location.pathname, x: ev.layerX/$(".heat_map_body").width(), y: ev.layerY/$(".heat_map_body").height(), type: 'click' };
-    click_array.push(pageCoords);
-    if (click_array.length >= 3)
-    {
-      var coordinates = click_array;
-      $.ajax({
-          method: "POST",
-          url: '<%= points_path %>',
-          data: {'data': coordinates},
-          dataType: 'application/json'
-      });
-      click_array = [];
-    }
-  };
+  // var click_array = [];
+  // document.querySelector('.heat_map_body').onclick = function(ev) {
+  //   var pageCoords = { path: window.location.pathname, x: ev.layerX/$(".heat_map_body").width(), y: ev.layerY/$(".heat_map_body").height(), type: 'click' };
+  //   click_array.push(pageCoords);
+  //   if (click_array.length >= 3)
+  //   {
+  //     var coordinates = click_array;
+  //     $.ajax({
+  //         method: "POST",
+  //         url: '<%= points_path %>',
+  //         data: {'data': coordinates},
+  //         dataType: 'application/json'
+  //     });
+  //     click_array = [];
+  //   }
+  // };
+  alert("Testing");
 
 });
