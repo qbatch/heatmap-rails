@@ -13,7 +13,7 @@ $( document ).ready(function() {
 
       $.ajax({
          method: "POST",
-         url: '/heatmap_rb/points',
+         url: '/points',
          data: coordinates,
          dataType: 'application/json'
       });
@@ -29,7 +29,7 @@ $( document ).ready(function() {
       var coordinates = click_array;
       $.ajax({
           method: "POST",
-          url: '/heatmap_rb/points',
+          url: '/points',
           data: {'data': coordinates},
           dataType: 'application/json'
       });
