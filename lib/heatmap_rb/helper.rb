@@ -11,7 +11,7 @@ module HeatmapRb
       html = ""
 
       js = <<JS
-          <script type="text/javascript">
+<script type="text/javascript">
 $( document ).ready(function() {
   var move_array = [];
   document.querySelector('.heat_map_body').onmousemove = function(ev) {
@@ -48,7 +48,7 @@ $( document ).ready(function() {
   }
 });
           </script>
-          JS
+JS
 
       html += js
       html.respond_to?(:html_safe) ? html.html_safe : html
