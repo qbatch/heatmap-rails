@@ -1,3 +1,9 @@
 module HeatmapRb
-  class Engine < Rails::Engine; end
+  class Engine < Rails::Engine
+    initializer "helper" do
+      ActiveSupport.on_load(:action_view) do
+        include Helper
+      end
+    end
+  end
 end
