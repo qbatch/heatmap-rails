@@ -22,7 +22,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Install the gem
+2. Run
+
+    $ rails g heatmap_rb:install
+
+3. Migrate
+
+    $ rake db:migrate
+
+4. Include the following helper on any page where you need to generate the heatmap
+
+    <%= save_heatmap %>
+
+5. You can customize
+
+    <%= save_heatmap({click: 3, move: 50}) %>
+
+These are default values.
 
 ## Development
 
