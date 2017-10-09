@@ -5,8 +5,8 @@ module HeatmapRb
 
     def save_heatmap(options = {})
 
-      click = options.delete(:click) || HeatmapRb.options.delete(:click)
-      move = options.delete(:move) || HeatmapRb.options.delete(:move)
+      click = options[:click] || HeatmapRb.options[:click]
+      move = options[:move] || HeatmapRb.options[:move]
 
       html = ""
 
