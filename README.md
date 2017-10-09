@@ -25,27 +25,27 @@ Or install it yourself as:
 1. Install the gem
 2. Run:
 
-    $ rails g heatmap_rb:install
+    `$ rails g heatmap_rb:install`
 
 3. Migrate:
 
-    $ rake db:migrate
+    `$ rake db:migrate`
 
 4. Include the following helper on any page where you need to generate the heatmap:
 
-    <%= save_heatmap %>
+    `<%= save_heatmap %>`
 
 5. You can customize:
 
-    <%= save_heatmap({click: 3, move: 50}) %>
+    `<%= save_heatmap({click: 3, move: 50}) %>`
 
 6. Include where to show the heatmap:
 
-    <%= show_heatmap(request.path) %>
+    `<%= show_heatmap(request.path) %>`
 
 7. Require HeatMap.Js:
 
-    require heatmap.js
+    `require heatmap.js`
 
 These are default values.
 
