@@ -1,4 +1,4 @@
-# HeatmapRb
+# HeatmapRb :construction:
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/heatmap_rb`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -23,42 +23,49 @@ Or install it yourself as:
 ## Usage
 
 1. Install the gem
-2. Run:
-
-    `$ rails g heatmap_rb:install`
+2. Run the command to generate migration:
+```console
+$ rails g heatmap_rb:install
+```
 
 3. Migrate:
-
-    `$ rake db:migrate`
+```console
+$ rake db:migrate
+```
 
 4. Include the following helper on any page where you need to generate the heatmap:
+```erb
+<%= save_heatmap %>
+```
 
-    `<%= save_heatmap %>`
+5. Include where to show the heatmap:
+```erb
+<%= show_heatmap(request.path) %>
+```
 
-5. You can customize:
+6. In respective JS file, Require HeatMap.Js to show the heatmap:
+```js
+//= require heatmap.js
+```
 
-    `<%= save_heatmap({click: 3, move: 50}) %>`
+### Options
 
-6. Include where to show the heatmap:
-
-    `<%= show_heatmap(request.path) %>`
-
-7. Require HeatMap.Js:
-
-    `require heatmap.js`
-
+You can customize:
+```erb
+<%= save_heatmap({click: 3, move: 50}) %>
+```
 These are default values.
 
-## Development
+## Development :construction:
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Contributing
+## Contributing :construction:
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/heatmap_rb.
 
-## License
+## License :construction:
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
