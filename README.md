@@ -39,6 +39,14 @@ Or install it yourself as:
 
     <%= save_heatmap({click: 3, move: 50}) %>
 
+6. Include where to show the heatmap
+
+    <%= show_heatmap(request.path) %>
+
+7. Require HeatMap.Js
+
+    require heatmap.js
+
 These are default values.
 
 ## Development

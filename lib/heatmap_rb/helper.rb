@@ -54,5 +54,33 @@ JS
       html.respond_to?(:html_safe) ? html.html_safe : html
     end
 
+    def show_heatmap(path)
+      heatmap = HeatMap.where(path: path.to_s)
+      @data_points = []
+
+      heatmap.each do |coordinate|
+        @data_points.push({x: coordinate.x_coordinate, y: coordinate.y_coordinate, value: 100})
+      end
+      html = ""
+      js = <<JS
+<script type="text/javascript">
+  var heatmapInstance = h337.create({
+    container: document.querySelector('.heat_map_body'),
+    radius: 60
+  });
+  var points = JSON.parse('#{raw(@data_points.to_json.html_safe)}');
+  var data_points = points.map(function(point){
+    point.x = parseInt(point.x*$(".heat_map_body").width());
+    point.y = parseInt(point.y*$(".heat_map_body").height());
+    return point;
+  });
+  heatmapInstance.addData(data_points);
+</script>
+JS
+
+      html += js
+      html.respond_to?(:html_safe) ? html.html_safe : html
+    end
+
   end
 end
