@@ -1,8 +1,8 @@
 # HeatmapRb :construction:
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/heatmap_rb`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Integrate heatmaps in your web application to see on which part the user spends most time on your web application. Where does users click on the page.
+Helping in gathering analytics to find out what works on the web, what attracts most of the users. 
+View user interactions and make your application more amazing! :sparkles:
 
 ## Installation
 
@@ -47,7 +47,35 @@ $ rake db:migrate
 ```js
 //= require heatmap.js
 ```
+## Viewing Heat Maps
+Use the helper
+```erb
+<%= show_heatmap(request.path) %>
+```
+The argument is the path of current page. This way the helper will only display the respective heatmap.
+The viewing can be done in multiple ways, for example if you want only the admin users to view heatmap, you can do something like:
 
+```erb
+<% if admin_user_signed_in? %>
+    <%= show_heatmap(request.path) %>
+<% end %>
+```
+
+Another way can be using some code in URL. For example is you want to use URL like 
+
+```url
+www.website.com/see_heatmap
+```
+
+You can use:
+
+```erb
+<% if request.path.include?("see_heatmap") %>
+    <%= show_heatmap(request.path) %>
+<% end %>
+```
+
+And there can be multiple ways!
 ### Options
 
 You can customize:
