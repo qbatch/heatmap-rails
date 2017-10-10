@@ -5,7 +5,7 @@ require "heatmap/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "heatmap-rails"
-  spec.version       = HeatmapRb::VERSION
+  spec.version       = Heatmap::VERSION
   spec.authors       = ["Hassan"]
   spec.email         = ["hassan@qbatch.com"]
 
