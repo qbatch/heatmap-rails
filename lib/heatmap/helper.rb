@@ -1,12 +1,12 @@
 require "erb"
 
-module HeatmapRb
+module Heatmap
   module Helper
 
     def save_heatmap(options = {})
 
-      click = options[:click] || HeatmapRb.options[:click]
-      move = options[:move] || HeatmapRb.options[:move]
+      click = options[:click] || Heatmap::Rails.options[:click]
+      move = options[:move] || Heatmap::Rails.options[:move]
 
       html = ""
 
