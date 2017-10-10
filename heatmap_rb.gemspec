@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "heatmap_rb/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "heatmap_rb"
+  spec.name          = "heatmap-rails"
   spec.version       = HeatmapRb::VERSION
   spec.authors       = ["Hassan"]
   spec.email         = ["hassan@qbatch.com"]
