@@ -1,7 +1,7 @@
 # HeatmapRb :construction:
 
 Integrate heatmaps in your web application to see on which part the user spends most time on your web application. Where does users click on the page.
-Helping in gathering analytics to find out what works on the web, what attracts most of the users. 
+Helping in gathering analytics to find out what works on the web, what attracts most of the users.
 View user interactions and make your application more amazing! :sparkles:
 
 ## Installation
@@ -61,7 +61,7 @@ The viewing can be done in multiple ways, for example if you want only the admin
 <% end %>
 ```
 
-Another way can be using some code in URL. For example is you want to use URL like 
+Another way can be using some code in URL. For example is you want to use URL like
 
 ```url
 www.website.com/see_heatmap
@@ -96,7 +96,7 @@ heatmap-rails uses [HeatMap.Js](https://www.patrick-wied.at/static/heatmapjs/) t
 ## Contributing :construction:
 
 1. [Bug reports](https://github.com/Qbatch/heatmap-rails/issues) are always welcome.
-2. [Pull Requests](https://github.com/Qbatch/heatmap-rails/pulls). Suggest or Update. 
+2. [Pull Requests](https://github.com/Qbatch/heatmap-rails/pulls). Suggest or Update.
 
 ## License :construction:
 
