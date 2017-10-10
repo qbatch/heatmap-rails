@@ -4,6 +4,14 @@ Integrate heatmaps in your web application to see on which part the user spends 
 Helping in gathering analytics to find out what works on the web, what attracts most of the users.
 View user interactions and make your application more amazing! :sparkles:
 
+## Local Testing
+
+Use
+
+```ruby
+gem 'heatmap-rails', git: 'https://github.com/Qbatch/heatmap-rails.git'
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
