@@ -17,7 +17,7 @@ gem 'heatmap-rails', git: 'https://github.com/Qbatch/heatmap-rails.git'
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'heatmap_rb'
+gem 'heatmap-rails'
 ```
 
 And then execute:
@@ -26,7 +26,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install heatmap_rb
+    $ gem install heatmap-rails
 
 ## Usage
 
