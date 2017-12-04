@@ -5,7 +5,7 @@ class PointsController < ApplicationController
   def create
     if params[:data].present?
       for i in 0..2
-        HeatMap.create(path: params[:data]["#{i}"][:path], x_coordinate: params[:data]["#{i}"][:x], y_coordinate: params[:data]["#{i}"][:y], click_type: 'click')
+        HeatMap.create(path: params[:data]["#{i}"][:path], click_type: 'click',xpath: params[:data]["#{i}"][:xpath])
       end
     end
     if params[:type] == 'move'
