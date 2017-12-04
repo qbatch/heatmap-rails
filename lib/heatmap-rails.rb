@@ -7,6 +7,6 @@ module Heatmap
     class << self
       attr_accessor :options
     end
-    self.options = {click: 3, move: 50}
+    self.options = {click: 3, move: 10}
   end
 end

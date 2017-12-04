@@ -14,21 +14,23 @@ module Heatmap
 <script type="text/javascript">
 $( document ).ready(function() {
   var move_array = [];
-  document.querySelector('.heat_map_body').onmousemove = function(ev) {
-    var pageCoords = {x: ev.layerX/$(".heat_map_body").width(), y: ev.layerY/$(".heat_map_body").height()};
-    move_array.push(pageCoords);
+  document.querySelector('body').onmousemove = function(ev) {
+    var xpath_element =  xpathstring(ev);
+    var pageCoords = { path: window.location.pathname,  type: 'move', xpath: xpath_element };
+    console.log(xpath_element);
+    var obj = move_array.find(function (obj) { return obj.xpath === xpath_element; });
+    if (obj == null){
+     move_array.push(pageCoords);
+    }
     if (move_array.length >= parseInt(#{move}))
     {
-      var sum = move_array.reduce(function (a, b) {
-      return {x: a.x + b.x, y: a.y + b.y};
-      });
-      var coordinates = { path: window.location.pathname, x: sum['x']/move_array.length, y: sum['y']/move_array.length, type: 'move' };
-      move_array=[];
-      //sendRequest(coordinates);
+      var coordinates = move_array;
+      sendRequest({'move_data': coordinates});
+      move_array = [];
     }
   };
   var click_array = [];
-  document.querySelector('.heat_map_body').onclick = function(ev) {
+  document.querySelector('body').onclick = function(ev) {
 
     var xpath_element=  xpathstring(ev);
     var pageCoords = { path: window.location.pathname,  type: 'click', xpath: xpath_element };
@@ -49,54 +51,45 @@ $( document ).ready(function() {
     });
   }
 });
-function xpathstring(event) {
-    var
-    e = event.srcElement || event.originalTarget,
-        path = xpath(e, '');;
-     return path
 
+function xpathstring(event) {
+  var
+  e = event.srcElement || event.originalTarget,
+  path = xpath(e, '');;
+  return path
 }
 function xpath(element, suffix) {
-    var parent, child_index, node_name;
-    parent = element.parentElement;
-    if (parent) {
-        node_name = element.nodeName.toLowerCase();
-        child_index = nodeindex(element, parent.children) + 1;
-        return xpath(parent, '/' + node_name + '[' + child_index + ']' + suffix);
-    } else {
-        return '//html[1]' + suffix;
-    }
+  var parent, child_index, node_name;
+  parent = element.parentElement;
+  if (parent) {
+      node_name = element.nodeName.toLowerCase();
+      child_index = nodeindex(element, parent.children) + 1;
+      return xpath(parent, '/' + node_name + '[' + child_index + ']' + suffix);
+  } else {
+      return '//html[1]' + suffix;
+  }
 }
 function nodeindex(element, array) {
-    var i,
-        found = -1,
-        element_name = element.nodeName.toLowerCase(),
-        matched
-       ;
+  var i,
+      found = -1,
+      element_name = element.nodeName.toLowerCase(),
+      matched
+     ;
 
-    for (i = 0; i != array.length; ++i) {
-        matched = array[i];
-        if (matched.nodeName.toLowerCase() === element_name) {
-            ++found;
+  for (i = 0; i != array.length; ++i) {
+      matched = array[i];
+      if (matched.nodeName.toLowerCase() === element_name) {
+          ++found;
 
 
-        if (matched === element) {
-            return found;
-        }
-        }
-    }
+      if (matched === element) {
+          return found;
+      }
+      }
+  }
 
-    return -1;
+  return -1;
 }
-function xquery(path) {
-    return document.evaluate(
-    path,
-    document,
-    null,
-    XPathResult.FIRST_ORDERED_NODE_TYPE,
-    null).singleNodeValue;
-}
-
 function getOffset( path ) {
     el = document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     var _x = 0;
@@ -108,7 +101,6 @@ function getOffset( path ) {
     }
     return { y: _y, x: _x };
 }
-
  </script>
 JS
 
@@ -127,8 +119,8 @@ JS
       js = <<JS
 <script type="text/javascript">
   var heatmapInstance = h337.create({
-    container: document.querySelector('.heat_map_body'),
-    radius: 60
+    container: document.querySelector('body'),
+    radius: 40
   });
   var xpath = JSON.parse('#{raw(@data_xpaths.to_json.html_safe)}');
   var data_xpath = xpath.map(function(path){
@@ -140,11 +132,8 @@ JS
     return path;
   });
   heatmapInstance.addData(data_xpath);
-
-
 </script>
 JS
-puts js
 
       html += js
       html.respond_to?(:html_safe) ? html.html_safe : html
