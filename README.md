@@ -33,7 +33,7 @@ Or install it yourself as:
 1. Install the gem
 2. Run the command to generate migration:
 ```console
-$ rails g heatmap_rb:install
+$ rails g heatmap_rails:install
 ```
 
 3. Migrate:
