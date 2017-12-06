@@ -45,7 +45,7 @@ $ rake db:migrate
 ```erb
 <%= show_heatmap(request.path) %>
 ```
-6. Before adding headmap.js in the application install jquery-rails gem and require it in application.js file
+6. Before adding headmap.js in the application install **jquery-rails** gem and require it in application.js file
 ```js
 //= require jquery
 ```
