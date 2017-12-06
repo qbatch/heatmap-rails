@@ -1,16 +1,10 @@
-# HeatmapRb :construction:
+[![Gem Version](https://badge.fury.io/rb/heatmap-rails.svg)](https://badge.fury.io/rb/heatmap-rails)
+
+# Heatmap-Rails :construction:
 
 Integrate heatmaps in your web application to see on which part the user spends most time on your web application. Where does users click on the page.
 Helping in gathering analytics to find out what works on the web, what attracts most of the users.
 View user interactions and make your application more amazing! :sparkles:
-
-## Local Testing
-
-Use
-
-```ruby
-gem 'heatmap-rails', git: 'https://github.com/Qbatch/heatmap-rails.git'
-```
 
 ## Installation
 
@@ -31,7 +25,8 @@ Or install it yourself as:
 ## Usage
 
 1. Install the gem
-2. Run the command to generate migration:
+
+2. Run the command to generate a migration to save heatmaps data:
 ```console
 $ rails g heatmap_rails:install
 ```
@@ -50,8 +45,13 @@ $ rake db:migrate
 ```erb
 <%= show_heatmap(request.path) %>
 ```
+6. Before adding headmap.js in the application install jquery-rails gem and include
+```js
+//= require jquery
+```
+in application.js file
 
-6. In respective JS file, Require HeatMap.Js to show the heatmap:
+7. In respective JS file, Require HeatMap.Js to show the heatmap:
 ```js
 //= require heatmap.js
 ```
