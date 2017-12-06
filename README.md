@@ -69,7 +69,7 @@ The viewing can be done in multiple ways, for example if you want only the admin
 <% end %>
 ```
 
-Another way can be using some code in URL. For example is you want to use URL like
+Another way can be using some param in the URL. For example if you want to use URL like:
 
 ```url
 www.website.com/see_heatmap
@@ -83,14 +83,13 @@ You can use:
 <% end %>
 ```
 
-And there can be multiple ways!
 ### Options
 
-You can customize:
+You can customize the max stack limits before the data is sent to server side via http request. We understand for different application the average user interactions time on a specific page varies. You can set these values w.r.t to your application's needs:
 ```erb
 <%= save_heatmap({click: 3, move: 50}) %>
 ```
-These are default values.
+The default values for clicks is `3`. For mouse movements tracking its `50`.
 
 ## Development :construction:
 
@@ -99,7 +98,7 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Credits
-heatmap-rails uses [HeatMap.Js](https://www.patrick-wied.at/static/heatmapjs/) to generated show heatmaps.
+heatmap-rails uses [HeatMap.Js](https://www.patrick-wied.at/static/heatmapjs/) to show generated data in form of heatmaps.
 
 ## Contributing :construction:
 
