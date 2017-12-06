@@ -1,6 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/heatmap-rails.svg)](https://badge.fury.io/rb/heatmap-rails)
 
-# Heatmap-Rails :construction:
+# Heatmap-Rails
 
 Integrate heatmaps in your web application to see on which part the user spends most time on your web application. Where does users click on the page.
 Helping in gathering analytics to find out what works on the web, what attracts most of the users.
@@ -91,7 +91,7 @@ You can customize the max stack limits before the data is sent to server side vi
 ```
 The default values for clicks is `3`. For mouse movements tracking its `50`.
 
-## Development :construction:
+## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
@@ -105,6 +105,6 @@ heatmap-rails uses [HeatMap.Js](https://www.patrick-wied.at/static/heatmapjs/) t
 1. [Bug reports](https://github.com/Qbatch/heatmap-rails/issues) are always welcome.
 2. [Pull Requests](https://github.com/Qbatch/heatmap-rails/pulls). Suggest or Update.
 
-## License :construction:
+## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
