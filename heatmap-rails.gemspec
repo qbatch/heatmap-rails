@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{HeatMap Gem}
   spec.description   = %q{Get And Display HeatMap Coordinates}
-  spec.homepage      = "http://www.mygemserver.com"
+  spec.homepage      = "https://github.com/Qbatch/heatmap-rails"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
