@@ -7,17 +7,17 @@ module Heatmap
 
       click = options[:click] || Heatmap::Rails.options[:click]
       move = options[:move] || Heatmap::Rails.options[:move]
-
+      html_element = options[:html_element] || Heatmap::Rails.options[:html_element]
       html = ""
 
       js = <<JS
 <script type="text/javascript">
 $( document ).ready(function() {
   var move_array = [];
-  document.querySelector('body').onmousemove = function(ev) {
+  document.querySelector('#{html_element}').onmousemove = function(ev) {
     var xpath_element =  xpathstring(ev);
     var pageCoords = { path: window.location.pathname,  type: 'move', xpath: xpath_element };
-    console.log(xpath_element);
+
     var obj = move_array.find(function (obj) { return obj.xpath === xpath_element; });
     if (obj == null){
      move_array.push(pageCoords);
@@ -25,12 +25,15 @@ $( document ).ready(function() {
     if (move_array.length >= parseInt(#{move}))
     {
       var coordinates = move_array;
-      sendRequest({'move_data': coordinates});
+      sendRequest({'move_data': coordinates,'total_moves': #{move} });
       move_array = [];
+       console.log("Move " + coordinates);
     }
+
+
   };
   var click_array = [];
-  document.querySelector('body').onclick = function(ev) {
+  document.querySelector('#{html_element}').onclick = function(ev) {
 
     var xpath_element=  xpathstring(ev);
     var pageCoords = { path: window.location.pathname,  type: 'click', xpath: xpath_element };
@@ -38,8 +41,10 @@ $( document ).ready(function() {
     if (click_array.length >= parseInt(#{click}))
     {
       var coordinates = click_array;
-      sendRequest({'data': coordinates});
+      sendRequest({'click_data': coordinates, 'total_clicks': #{click} });
       click_array = [];
+     console.log("Click " + coordinates);
+
     }
   };
   function sendRequest(coordinates_data){
@@ -122,6 +127,17 @@ JS
     container: document.querySelector('body'),
     radius: 40
   });
+  function getOffset( path ) {
+    el = document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { y: _y, x: _x };
+  }
   var xpath = JSON.parse('#{raw(@data_xpaths.to_json.html_safe)}');
   var data_xpath = xpath.map(function(path){
     var x_coord = getOffset(path.xpath).x+25;
