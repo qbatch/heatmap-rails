@@ -1,6 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/heatmap-rails.svg)](https://badge.fury.io/rb/heatmap-rails)
 
-# Heatmap-Rails :construction:
+# Heatmap-Rails
 
 Integrate heatmaps in your web application to see on which part the user spends most time on your web application. Where does users click on the page.
 Helping in gathering analytics to find out what works on the web, what attracts most of the users.
@@ -69,7 +69,7 @@ The viewing can be done in multiple ways, for example if you want only the admin
 <% end %>
 ```
 
-Another way can be using some code in URL. For example is you want to use URL like
+Another way can be using some param in the URL. For example if you want to use URL like:
 
 ```url
 www.website.com/see_heatmap
@@ -83,29 +83,28 @@ You can use:
 <% end %>
 ```
 
-And there can be multiple ways!
 ### Options
 
-You can customize:
+You can customize the max stack limits before the data is sent to server side via http request. We understand for different application the average user interactions time on a specific page varies. You can set these values w.r.t to your application's needs:
 ```erb
 <%= save_heatmap({click: 3, move: 50}) %>
 ```
-These are default values.
+The default values for clicks is `3`. For mouse movements tracking its `50`.
 
-## Development :construction:
+## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Credits
-heatmap-rails uses [HeatMap.Js](https://www.patrick-wied.at/static/heatmapjs/) to generated show heatmaps.
+heatmap-rails uses [HeatMap.Js](https://www.patrick-wied.at/static/heatmapjs/) to show generated data in form of heatmaps.
 
 ## Contributing :construction:
 
 1. [Bug reports](https://github.com/Qbatch/heatmap-rails/issues) are always welcome.
 2. [Pull Requests](https://github.com/Qbatch/heatmap-rails/pulls). Suggest or Update.
 
-## License :construction:
+## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
