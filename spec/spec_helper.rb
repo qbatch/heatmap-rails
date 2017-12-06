@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "heatmap_rb"
+require "heatmap-rails"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
