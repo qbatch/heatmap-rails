@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "heatmap/version"
+require "heatmap/rails/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "heatmap-rails"
-  spec.version       = Heatmap::VERSION
+  spec.version       = Heatmap::Rails::VERSION
   spec.authors       = ["Hassan"]
   spec.email         = ["hassan@qbatch.com"]
 

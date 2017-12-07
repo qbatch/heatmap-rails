@@ -1,6 +1,6 @@
-require "heatmap/version"
-require "heatmap/engine"
-require "heatmap/helper"
+require "heatmap/rails/version"
+require "heatmap/rails/engine"
+require "heatmap/rails/helper"
 
 module Heatmap
   module Rails

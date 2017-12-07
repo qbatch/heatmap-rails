@@ -27,7 +27,6 @@ $( document ).ready(function() {
       var coordinates = move_array;
       sendRequest({'move_data': coordinates,'total_moves': #{move} });
       move_array = [];
-       console.log("Move " + coordinates);
     }
 
 
@@ -43,7 +42,6 @@ $( document ).ready(function() {
       var coordinates = click_array;
       sendRequest({'click_data': coordinates, 'total_clicks': #{click} });
       click_array = [];
-     console.log("Click " + coordinates);
 
     }
   };
