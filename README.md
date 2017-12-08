@@ -91,6 +91,11 @@ You can customize the max stack limits before the data is sent to server side vi
 ```
 The default values for clicks is `3`. For mouse movements tracking its `50`.
 
+```erb
+<%= save_heatmap({click: 3, move: 50, html_element: 'body'}) %>
+```
+you can even restrict heatmap generation to a specific DOM element. Default value for DOM element is `body` element. This can be change to any `.class` or any '#id'.  
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
