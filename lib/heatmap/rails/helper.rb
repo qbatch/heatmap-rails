@@ -16,7 +16,11 @@ $( document ).ready(function() {
   var move_array = [];
   document.querySelector('#{html_element}').onmousemove = function(ev) {
     var xpath_element =  xpathstring(ev);
-    var pageCoords = { path: window.location.pathname,  type: 'move', xpath: xpath_element };
+    var element_width = ev.target.getBoundingClientRect().width;
+    var element_height= ev.target.getBoundingClientRect().height;
+    offset_x_element = ev.offsetX / element_width;
+    offset_y_element = ev.offsetY /  element_height;
+    var pageCoords = { path: window.location.pathname,  type: 'move', xpath: xpath_element, offset_x: offset_x_element ,  offset_y: offset_y_element, };
 
     var obj = move_array.find(function (obj) { return obj.xpath === xpath_element; });
     if (obj == null){
@@ -35,7 +39,11 @@ $( document ).ready(function() {
   document.querySelector('#{html_element}').onclick = function(ev) {
 
     var xpath_element=  xpathstring(ev);
-    var pageCoords = { path: window.location.pathname,  type: 'click', xpath: xpath_element };
+    var element_width = ev.target.getBoundingClientRect().width;
+    var element_height= ev.target.getBoundingClientRect().height;
+    offset_x_element = ev.offsetX / element_width;
+    offset_y_element = ev.offsetY /  element_height;
+    var pageCoords = { path: window.location.pathname,  type: 'click', xpath: xpath_element, offset_x: offset_x_element ,  offset_y: offset_y_element, };
     click_array.push(pageCoords);
     if (click_array.length >= parseInt(#{click}))
     {
@@ -116,7 +124,7 @@ JS
       @data_points = []
       @data_xpaths = []
       heatmap.each do |coordinate|
-        @data_xpaths.push({xpath: coordinate.xpath, x: 0, y:0, value: 100})
+        @data_xpaths.push({xpath: coordinate.xpath, offset_x: coordinate.offset_x, offset_y:coordinate.offset_y, value: 100})
       end
       html = ""
       js = <<JS
@@ -136,13 +144,20 @@ JS
     }
     return { y: _y, x: _x };
   }
+  function getElement(xpath){
+     return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  }
   var xpath = JSON.parse('#{raw(@data_xpaths.to_json.html_safe)}');
   var data_xpath = xpath.map(function(path){
-    var x_coord = getOffset(path.xpath).x+25;
-    var y_coord = getOffset(path.xpath).y+25;
+    width = getElement(path.xpath).getBoundingClientRect().width;
+    height = getElement(path.xpath).getBoundingClientRect().height;
+    var x_coord = getOffset(path.xpath).x+  (width * path.offset_x);
+    var y_coord = getOffset(path.xpath).y+  (height * path.offset_y);
     delete path["xpath"];
-    path.x = parseInt(x_coord);
-    path.y = parseInt(y_coord);
+    delete path["offset_x"];
+    delete path["offset_y"];
+    path.x = Math.ceil(parseFloat(x_coord));
+    path.y = Math.ceil(parseFloat(y_coord));
     return path;
   });
   heatmapInstance.addData(data_xpath);
