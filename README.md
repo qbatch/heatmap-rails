@@ -5,6 +5,7 @@
 Integrate heatmaps in your web application to see on which part the user spends most time on your web application. Where does users click on the page.
 Helping in gathering analytics to find out what works on the web, what attracts most of the users.
 View user interactions and make your application more amazing! :sparkles:
+
 [Demo](https://heatmap-rails.herokuapp.com/)
 
 ## Installation
