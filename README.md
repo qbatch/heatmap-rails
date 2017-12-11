@@ -5,6 +5,7 @@
 Integrate heatmaps in your web application to see on which part the user spends most time on your web application. Where does users click on the page.
 Helping in gathering analytics to find out what works on the web, what attracts most of the users.
 View user interactions and make your application more amazing! :sparkles:
+[Demo](https://heatmap-rails.herokuapp.com/)
 
 ## Installation
 
@@ -72,13 +73,13 @@ The viewing can be done in multiple ways, for example if you want only the admin
 Another way can be using some param in the URL. For example if you want to use URL like:
 
 ```url
-www.website.com/see_heatmap
+www.website.com/?see_heatmap
 ```
 
 You can use:
 
 ```erb
-<% if request.path.include?("see_heatmap") %>
+<% if request.query_parameters.include?("see_heatmap") %>
     <%= show_heatmap(request.path) %>
 <% end %>
 ```
@@ -90,6 +91,11 @@ You can customize the max stack limits before the data is sent to server side vi
 <%= save_heatmap({click: 3, move: 50}) %>
 ```
 The default values for clicks is `3`. For mouse movements tracking its `50`.
+
+```erb
+<%= save_heatmap({click: 3, move: 50, html_element: 'body'}) %>
+```
+you can even restrict heatmap generation to a specific DOM element. Default value for DOM element is `body` element. This can be change to any `.class` or any '#id'.  
 
 ## Development
 
