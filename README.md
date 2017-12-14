@@ -9,7 +9,7 @@ View user interactions and make your application more amazing! :sparkles:
 [Try the demo](https://heatmap-rails.herokuapp.com/)
 
 Quick Demo of HeatMap Generation
-![Demo1](https://github.com/hassanakram/heatmap-rails-demo/blob/master/heatmap1.gif)
+![Demo1](https://github.com/hassanakram/heatmap-rails-demo/blob/master/heatmap__1.gif)
 
 ## Installation
 
