@@ -6,7 +6,7 @@ Integrate heatmaps in your web application to see on which part the user spends 
 Helping in gathering analytics to find out what works on the web, what attracts most of the users.
 View user interactions and make your application more amazing! :sparkles:
 
-[Demo](https://heatmap-rails.herokuapp.com/)
+[Try the demo](https://heatmap-rails.herokuapp.com/)
 
 ## Installation
 
