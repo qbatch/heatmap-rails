@@ -8,6 +8,9 @@ View user interactions and make your application more amazing! :sparkles:
 
 [Try the demo](https://heatmap-rails.herokuapp.com/)
 
+Quick Demo of HeatMap Generation
+![Demo1](https://github.com/hassanakram/heatmap-rails-demo/blob/master/heatmap1.gif)
+
 ## Installation
 
 Add this line to your application's Gemfile:
