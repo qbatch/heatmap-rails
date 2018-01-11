@@ -243,7 +243,7 @@ JS
     dot.style.position ="absolute";
     dot.style.borderWidth ="8px";
     dot.style.borderStyle ="solid";
-    var colors = Array('#FFE1FF', '#B0C4DE' ,'#B9D3EE', '#EEE685','#C6E2FF','#8DB6CD','#8EE5EE','#C1CDCD','#C1CDC1','#8B8B00');
+    var colors = Array('#ee3e32', '#f68838' ,'#fbb021', '#1b8a5a','#1d4877');
     var color = colors[Math.floor(Math.random()*colors.length)];
     dot.style.borderColor = color;
     dot.style.borderRadius ="50%";
