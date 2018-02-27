@@ -216,17 +216,25 @@ JS
   }
   var xpath = JSON.parse('#{raw(@data_xpaths.to_json.html_safe)}');
   var data_xpath = xpath.map(function(path){
-    width = getElement(path.xpath).getBoundingClientRect().width;
-    height = getElement(path.xpath).getBoundingClientRect().height;
-    var x_coord = getOffset(path.xpath).x+  (width * path.offset_x);
-    var y_coord = getOffset(path.xpath).y+  (height * path.offset_y);
-    delete path["xpath"];
-    delete path["offset_x"];
-    delete path["offset_y"];
-    path.x = Math.ceil(parseFloat(x_coord));
-    path.y = Math.ceil(parseFloat(y_coord));
-    return path;
+    if (path != null) {
+      element = getElement(path.xpath);
+      if (element != null){
+        width = element.getBoundingClientRect().width;
+        height = element.getBoundingClientRect().height;
+        var x_coord = getOffset(path.xpath).x+  (width * path.offset_x);
+        var y_coord = getOffset(path.xpath).y+  (height * path.offset_y);
+        delete path["xpath"];
+        delete path["offset_x"];
+        delete path["offset_y"];
+        path.x = Math.ceil(parseFloat(x_coord));
+        path.y = Math.ceil(parseFloat(y_coord));
+        return path;
+      }
+    }
   });
+  // Removed: Null Xpath(s)
+  var data_xpath = data_xpath.filter(function(val){ return val!==undefined; });
+
   heatmapInstance.addData(data_xpath);
   var scroll = JSON.parse('#{raw(@scroll_data.to_json.html_safe)}');
   var scroll_data = scroll.map(function(element){
