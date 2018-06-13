@@ -238,8 +238,11 @@ JS
   heatmapInstance.addData(data_xpath);
   var scroll = JSON.parse('#{raw(@scroll_data.to_json.html_safe)}');
   var scroll_data = scroll.map(function(element){
-    width = getElement(element.xpath).getBoundingClientRect().width;
-    height = getElement(element.xpath).getBoundingClientRect().height;
+    var element = getElement(element.xpath);
+    if (!element)
+      return;
+    width = element.getBoundingClientRect().width;
+    height = element.getBoundingClientRect().height;
     dot = document.createElement('div');
     dot.className = "dot";
     dot.style.left = (getOffset(element.xpath).x+  (width * element.offset_x)) + "px";
@@ -261,6 +264,7 @@ JS
     document.body.appendChild(dot);
   });
 
+  scroll_data = scroll_data.filter(function(val){ return val!==undefined; });
 </script>
 JS
 
