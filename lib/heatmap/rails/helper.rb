@@ -99,9 +99,8 @@ $( document ).ready(function() {
 });
 
 function xpathstring(event) {
-  var
-  e = event.srcElement || event.originalTarget,
-  path = xpath(e, '');;
+  var e = event.srcElement || event.originalTarget,
+  path = xpath(e, '');
   return path
 }
 function xpath(element, suffix) {
@@ -214,8 +213,8 @@ JS
   function getElement(xpath){
      return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   }
-  var xpath = JSON.parse('#{raw(@data_xpaths.to_json.html_safe)}');
-  var data_xpath = xpath.map(function(path){
+  var xpath_current = JSON.parse('#{raw(@data_xpaths.to_json.html_safe)}');
+  var data_xpath = xpath_current.map(function(path){
     if (path != null) {
       element = getElement(path.xpath);
       if (element != null){
