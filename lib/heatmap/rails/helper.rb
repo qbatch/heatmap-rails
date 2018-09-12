@@ -3,8 +3,11 @@ require "erb"
 module Heatmap
   module Helper
 
-    def save_heatmap(options = {})
+    def exact_route
+      "#{params[:controller]}/#{params[:action]}"
+    end
 
+    def save_heatmap(options = {})
       click = options[:click] || Heatmap::Rails.options[:click]
       move = options[:move] || Heatmap::Rails.options[:move]
       scroll = options[:scroll] || Heatmap::Rails.options[:scroll]
@@ -38,7 +41,7 @@ $( document ).ready(function() {
       var element_height= event.target.getBoundingClientRect().height;
       offset_x_element = event.offsetX / element_width;
       offset_y_element = event.offsetY /  element_height;
-      var pageCoords = { path: window.location.pathname,  type: 'scroll', xpath: xpath_element, offset_x: offset_x_element ,  offset_y: offset_y_element, };
+      var pageCoords = { path: "#{exact_route}",  type: 'scroll', xpath: xpath_element, offset_x: offset_x_element ,  offset_y: offset_y_element, };
 
       scroll_array.push(pageCoords);
       if (scroll_array.length >= parseInt(#{scroll})) {
@@ -55,7 +58,7 @@ $( document ).ready(function() {
     var element_height= ev.target.getBoundingClientRect().height;
     offset_x_element = ev.offsetX / element_width;
     offset_y_element = ev.offsetY /  element_height;
-    var pageCoords = { path: window.location.pathname,  type: 'move', xpath: xpath_element, offset_x: offset_x_element ,  offset_y: offset_y_element, };
+    var pageCoords = { path: "#{exact_route}",  type: 'move', xpath: xpath_element, offset_x: offset_x_element ,  offset_y: offset_y_element, };
 
     var obj = move_array.find(function (obj) { return obj.xpath === xpath_element; });
     if (obj == null){
@@ -78,7 +81,7 @@ $( document ).ready(function() {
     var element_height= ev.target.getBoundingClientRect().height;
     offset_x_element = ev.offsetX / element_width;
     offset_y_element = ev.offsetY /  element_height;
-    var pageCoords = { path: window.location.pathname,  type: 'click', xpath: xpath_element, offset_x: offset_x_element ,  offset_y: offset_y_element, };
+    var pageCoords = { path: "#{exact_route}",  type: 'click', xpath: xpath_element, offset_x: offset_x_element ,  offset_y: offset_y_element, };
     click_array.push(pageCoords);
     if (click_array.length >= parseInt(#{click}))
     {
@@ -153,14 +156,14 @@ JS
       html.respond_to?(:html_safe) ? html.html_safe : html
     end
 
-    def show_heatmap(path,type = false)
+    def show_heatmap(type = false)
       if type
-        heatmap = HeatMap.where(path: path.to_s , click_type: type)
-        heatmap_count = HeatMap.where(path: path.to_s , click_type: type).count
+        heatmap = HeatMap.where(path: exact_route.to_s , click_type: type)
+        heatmap_count = HeatMap.where(path: exact_route.to_s , click_type: type).count
         type = type + 's'
       else
-        heatmap = HeatMap.where(path: path.to_s)
-        heatmap_count = HeatMap.where(path: path.to_s).count
+        heatmap = HeatMap.where(path: exact_route.to_s)
+        heatmap_count = HeatMap.where(path: exact_route.to_s).count
         type = 'heatmaps'
       end
       @data_points = []
@@ -222,7 +225,7 @@ JS
         height = element.getBoundingClientRect().height;
         var x_coord = getOffset(path.xpath).x+  (width * path.offset_x);
         var y_coord = getOffset(path.xpath).y+  (height * path.offset_y);
-        delete path["xpath"];
+        delete path["xpath_current"];
         delete path["offset_x"];
         delete path["offset_y"];
         path.x = Math.ceil(parseFloat(x_coord));
@@ -237,11 +240,8 @@ JS
   heatmapInstance.addData(data_xpath);
   var scroll = JSON.parse('#{raw(@scroll_data.to_json.html_safe)}');
   var scroll_data = scroll.map(function(element){
-    var element = getElement(element.xpath);
-    if (!element)
-      return;
-    width = element.getBoundingClientRect().width;
-    height = element.getBoundingClientRect().height;
+    width = getElement(element.xpath).getBoundingClientRect().width;
+    height = getElement(element.xpath).getBoundingClientRect().height;
     dot = document.createElement('div');
     dot.className = "dot";
     dot.style.left = (getOffset(element.xpath).x+  (width * element.offset_x)) + "px";

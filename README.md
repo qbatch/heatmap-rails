@@ -53,7 +53,7 @@ $ rake db:migrate
 
 5. Include where to show the heatmap:
 ```erb
-<%= show_heatmap(request.path) %>
+<%= show_heatmap %>
 ```
 6. Before adding headmap.js in the application install **jquery-rails** gem and require it in application.js file
 ```js
@@ -68,14 +68,14 @@ $ rake db:migrate
 ## Viewing Heat Maps
 Use the helper
 ```erb
-<%= show_heatmap(request.path) %>
+<%= show_heatmap %>
 ```
 The argument is the path of current page. This way the helper will only display the respective heatmap.
 The viewing can be done in multiple ways, for example if you want only the admin users to view heatmap, you can do something like:
 
 ```erb
 <% if admin_user_signed_in? %>
-    <%= show_heatmap(request.path) %>
+    <%= show_heatmap %>
 <% end %>
 ```
 
@@ -89,7 +89,7 @@ You can use:
 
 ```erb
 <% if request.query_parameters.include?("see_heatmap") %>
-    <%= show_heatmap(request.path) %>
+    <%= show_heatmap %>
 <% end %>
 ```
 
